@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Subsets
@@ -25,11 +26,10 @@ namespace Subsets
 		private static bool IsValidList(IReadOnlyCollection<int> input, int divisor)
 		{
 			return
-				input.Count > 1 &&
 				(from i in input
 					from j in input
 					where i < j
-					select new {i, j}).All(x => (x.i + x.j) % divisor == 0);
+					select new {i, j}).All(x => Math.Abs(x.i + x.j) % divisor == 0);
 		}
 	}
 }
